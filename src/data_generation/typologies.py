@@ -440,7 +440,12 @@ def inject_all_typologies(customers_df: pd.DataFrame,
         record_scenario(sid, "round_tripping", picked[0], involved, rows)
 
     # --- Compound cases: a handful of customers get a SECOND typology -----
-    compound_candidates = list(used_customers)
+    # sorted(), not list(): Python randomizes string hashing per-process
+    # (PYTHONHASHSEED), so a plain set's iteration order is NOT
+    # reproducible across runs even with every RNG seeded identically.
+    # Sorting first means rng.shuffle() below always starts from the same
+    # order, which is what actually makes RANDOM_SEED reproducible here.
+    compound_candidates = sorted(used_customers)
     rng.shuffle(compound_candidates)
     typology_injectors = {
         "structuring": lambda c, sid: inject_structuring(c, rng, fake, sid, safe_start, safe_end, next_txn_id),
