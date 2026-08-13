@@ -1,0 +1,31 @@
+# Byte-compiled / cache files
+__pycache__/
+*.pyc
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Generated data and outputs (these are large and reproducible from run_pipeline.py,
+# so we don't commit them — anyone cloning the repo regenerates their own copy)
+data/*.csv
+data/*.parquet
+output/*.db
+output/*.csv
+
+# Keep the folders themselves tracked even though their contents are ignored
+!data/.gitkeep
+!output/.gitkeep
+
+# Streamlit local config
+.streamlit/
+
+# OS / editor junk
+.DS_Store
+.idea/
+.vscode/
+
+# Local run logs / pytest cache
+pipeline_run.log
+.pytest_cache/
