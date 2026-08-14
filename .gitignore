@@ -7,14 +7,10 @@ venv/
 .venv/
 env/
 
-# Generated data and outputs (these are large and reproducible from run_pipeline.py,
-# so we don't commit them — anyone cloning the repo regenerates their own copy)
-data/*.csv
-data/*.parquet
-output/*.db
-output/*.csv
-
-# Keep the folders themselves tracked even though their contents are ignored
+# data/ and output/ generated files are intentionally committed (see README)
+# so the repo is browsable/runnable without a `python run_pipeline.py` step first.
+# .gitkeep entries are harmless no-ops now but kept in case these ever go back
+# to being ignored.
 !data/.gitkeep
 !output/.gitkeep
 
